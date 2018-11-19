@@ -3,6 +3,8 @@ package com.example.vendtest.controller;
 import com.example.vendtest.dto.HelloDto;
 import com.example.vendtest.exception.RestException;
 import com.example.vendtest.service.HelloService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @Controller
 public class HelloController {
+    Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
     private HelloService helloService;
@@ -31,6 +34,7 @@ public class HelloController {
             return helloService.getHelloResponse(id.get(), "test");
         }
 
+        logger.warn("Not found");
         throw new RestException(HttpStatus.NOT_FOUND);
     }
 
