@@ -44,5 +44,9 @@ public class ProductService {
         id++;
     }
 
+    public ProductDto getProduct(long id) {
+        return products.get(id);
+    }
+
 
 }
